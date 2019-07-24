@@ -33,27 +33,25 @@ path = 'C:\\Users\\anastasiya.andreeva\\PycharmProjects\\untitled\\excel'
 path = checkDir(path)
 list = getFilesListByPath(path)
 print(list)
+print((len(list)))
 
-n = 0
-
-def readFiles(list):
-    while n<=10:
-        rb = xlrd.open_workbook(list[n])
+ModelParamCollection = []
+def openFiles(list):
+    for file in list:
+        rb = xlrd.open_workbook(file)
         sheet = rb.sheet_by_index(0)
-        n += 1
+        for i in range(sheet.nrows):
+            r = sheet.row_values(i)
+            obj = createObject(r)
+            ModelParamCollection.append(obj)
+    return ModelParamCollection
 
-
-
-
-
-
-for i in range(sheet.nrows):
-    r = sheet.row_values(i)
+def createObject(r):
     obj = ModelParam()
     obj.setId(r[0])
     obj.setUniqueId(r[1])
-    obj.setNavisworks(r[2])
     obj.setLevel(r[3])
+    obj.setNavisworks(r[2])
     obj.setSection(r[4])
     obj.setCategory(r[5])
     obj.setType(r[6])
@@ -65,18 +63,28 @@ for i in range(sheet.nrows):
     obj.setOffsetUp(r[12])
     obj.setWidth(r[13])
     obj.setHeight(r[14])
-    ModelParamCollection.append(obj)
+    return obj
+
+n = []
+def createDict(ModelParamCollection):
+    for i in ModelParamCollection:
+        n.append(i.toDict())
+    return n
+
+list = openFiles(list)
+n = createDict(ModelParamCollection)
+
+with open('data.json','w',encoding='utf-8') as f:
+    json.dump(n, f, sort_keys=False, indent=2, separators=(',', ': '), ensure_ascii=False)
+
 """
 csv = []
 for i in ModelParamCollection:
     csv.append(';'.join(list(map(lambda x: str(x), i.toList()))))
 print("\n".join(csv))
-"""
 
-n = []
-for i in ModelParamCollection:
-    n.append(i.toDict())
-#print(n)
 
 json_string = json.dumps(n, sort_keys=False, indent=2, separators=(',', ': '), ensure_ascii=False)
 print(json_string)
+
+"""
