@@ -15,6 +15,7 @@ class ModelParam():
         self.__offset_up = None
         self.__width = None
         self.__height = None
+        self.__elevation = None
 
     def getId(self):
         return self.__id
@@ -125,6 +126,13 @@ class ModelParam():
         if value != '':
             self.__offset_up = round(float(value), 2)
 
+    def getElevation(self):
+        return self.__elevation
+
+    def setElevation(self, value):
+        if value != '':
+            self.__elevation = int(value)
+
     def toDict(self):
         return dict({
             "id": self.__id,
@@ -141,7 +149,8 @@ class ModelParam():
             "offset": self.__offset,
             "offset_up": self.__offset_up,
             "width": self.__width,
-            "height":self.__height
+            "height": self.__height,
+            "elevation": self.__elevation
         })
 
     def toList(self):
@@ -160,5 +169,6 @@ class ModelParam():
             self.__offset,
             self.__offset_up,
             self.__width,
-            self.__height
+            self.__height,
+            self.__elevation
         ]
