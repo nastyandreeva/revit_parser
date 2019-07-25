@@ -63,6 +63,7 @@ def createObject(r):
     obj.setOffsetUp(r[12])
     obj.setWidth(r[13])
     obj.setHeight(r[14])
+    obj.setElevation(r[15])
     return obj
 
 
@@ -84,9 +85,6 @@ csv = []
 for i in ModelParamCollection:
     csv.append(';'.join(list(map(lambda x: str(x), i.toList()))))
 print("\n".join(csv))
-
-
 json_string = json.dumps(n, sort_keys=False, indent=2, separators=(',', ': '), ensure_ascii=False)
 print(json_string)
-
 """
