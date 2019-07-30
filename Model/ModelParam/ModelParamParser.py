@@ -5,7 +5,7 @@ import json
 from Model.ModelParam.ModelParamCollection import ModelParamCollection
 from Model.ModelParam.ModelParamEntity import ModelParamEntity
 
-class ModelParamParcer():
+class ModelParamParser():
     __modelParamCollection: ModelParamCollection
 
     def __init__(self, path=None):
@@ -48,6 +48,7 @@ class ModelParamParcer():
     # Фун-ция создания объектов коллекции
     def openFiles(self, list):
         for file in list:
+            print(file)
             rb = xlrd.open_workbook(file)
             sheet = rb.sheet_by_index(0)
             for i in range(sheet.nrows):
@@ -76,7 +77,3 @@ class ModelParamParcer():
         obj.setElevation(r[15])
         return obj
 
-
-test = ModelParamParcer('C:\\Users\\anastasiya.andreeva\\PycharmProjects\\untitled\\excel')
-n = test.getCollection()
-print(n.toJSON())
