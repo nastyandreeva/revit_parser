@@ -1,0 +1,5 @@
+setup.py
+RevitParser.egg-info/PKG-INFO
+RevitParser.egg-info/SOURCES.txt
+RevitParser.egg-info/dependency_links.txt
+RevitParser.egg-info/top_level.txt
