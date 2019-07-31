@@ -6,6 +6,7 @@ class ModelParamEntity():
         self.__level = None
         self.__section = None
         self.__category = None
+        self.__family = None
         self.__type = None
         self.__name = None
         self.__length = None
@@ -62,6 +63,13 @@ class ModelParamEntity():
     def setCategory(self, value):
         if value != '':
             self.__category = str(value)
+
+    def getFamily(self):
+        return self.__family
+
+    def setFamily(self, value):
+        if value != '':
+            self.__family = str(value)
 
     def getType(self):
         return self.__type
@@ -141,6 +149,7 @@ class ModelParamEntity():
             "level": self.__level,
             "section": self.__section,
             "category": self.__category,
+            "family":self.__family,
             "type": self.__type,
             "name": self.__name,
             "length": self.__length,
@@ -161,6 +170,7 @@ class ModelParamEntity():
             self.__level,
             self.__section,
             self.__category,
+            self.__family,
             self.__type,
             self.__name,
             self.__length,
